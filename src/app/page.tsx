@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { CarsGrid } from "@/components/layout/cars-grid";
+import { cars, CATEGORY_NAMES } from "@/data/cars";
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="h-[calc(100vh-4rem)] relative flex items-center">
-        <div className="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4">
+      <section className="min-h-[calc(100vh-6rem)] relative flex items-center">
+        <div className="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4 -mt-28">
           {/* Left Content Section */}
-          <div className="w-full md:w-1/2 flex flex-col gap-6">
+          <div className="w-full md:w-1/2 flex flex-col gap-6 text-center md:text-left">
             <div className="space-y-4">
               <p className="text-gray-600 uppercase tracking-wide">
                 Megbízható autókölcsönzés!
@@ -27,9 +29,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Button className="bg-green-500 hover:bg-green-600">
-                Autóink
+            <div className="flex flex-wrap gap-4 mt-4 justify-center md:justify-start">
+              <Button asChild className="bg-green-500 hover:bg-green-600">
+                <a href="#autoink">Autóink</a>
               </Button>
               <Button variant="outline">Tudnivalók</Button>
             </div>
@@ -49,7 +51,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
           <span className="text-gray-600 font-medium">Autóink</span>
           <div className="animate-bounce">
             <svg
@@ -70,11 +72,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="min-h-screen bg-gray-50 py-24">
+      <section id="autoink" className="min-h-screen bg-gray-50 py-24">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">Autóink</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            div
+          <h2 className="text-4xl font-bold text-center mb-6">Autóink</h2>
+          <p className="text-gray-600 text-center text-lg mb-16">
+            Fedezze fel prémium autóflottánkat, amely minden igényt kielégít
+          </p>
+
+          {/* Economy Cars */}
+          <div className="mb-16">
+            <h3 className="text-2xl font-semibold mb-3">
+              {CATEGORY_NAMES.economy}
+            </h3>
+            <p className="text-gray-600 mb-8">
+              Megbízható, üzemanyag-takarékos autók kedvező áron
+            </p>
+            <CarsGrid cars={cars} category="economy" showUnavailable={true} />
+          </div>
+
+          {/* Premium Cars */}
+          <div>
+            <h3 className="text-2xl font-semibold mb-3">
+              {CATEGORY_NAMES.premium}
+            </h3>
+            <p className="text-gray-600 mb-8">
+              Luxus és kényelem a legmagasabb színvonalon
+            </p>
+            <CarsGrid cars={cars} category="premium" showUnavailable={true} />
           </div>
         </div>
       </section>

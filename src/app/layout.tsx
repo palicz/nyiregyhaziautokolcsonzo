@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
+import { TopBar } from "@/components/layout/top-bar";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
+        <TopBar />
         <Header />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   );

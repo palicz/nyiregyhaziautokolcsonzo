@@ -11,13 +11,17 @@ export const Header = () => {
 
         {/* Desktop Navigation*/}
         <nav className="hidden md:flex items-center gap-8">
-          {["Autóink", "Információk", "Kapcsolat"].map((item) => (
+          {[
+            { name: "Autóink", href: "/#autoink" },
+            { name: "Információk", href: "/" },
+            { name: "Kapcsolat", href: "/" },
+          ].map((item) => (
             <Link
-              key={item}
-              href="/"
+              key={item.name}
+              href={item.href}
               className="group relative hover:text-green-500 transition-colors"
             >
-              {item}
+              {item.name}
               <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-green-400 group-hover:w-full"></span>
             </Link>
           ))}
