@@ -29,7 +29,7 @@ export const TopBar = () => {
             <div className="flex items-center gap-2">
               <Phone size={16} className="text-white" />
               <a
-                href="tel:+36301234567"
+                href="tel:+06702148844"
                 className="text-white whitespace-nowrap"
               >
                 +06 70 214 8844

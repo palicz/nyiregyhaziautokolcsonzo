@@ -39,7 +39,7 @@ export default function Home() {
               </p>
               <p className="text-lg text-gray-600 text-center md:text-left">
                 <span className="block">4400, Nyíregyháza Lujza utca 20.</span>
-                <span className="block">+36702148899</span>
+                <span className="block">+06 70 214 8844</span>
               </p>
             </div>
 
