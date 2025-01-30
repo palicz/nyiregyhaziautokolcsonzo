@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-6rem)] relative flex items-center">
-        <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 px-4 -mt-28">
+      <section className="min-h-[calc(100vh-6rem)] relative flex items-center w-full overflow-x-hidden">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 px-4 py-8 md:py-0 md:-mt-28">
           {/* Left Content Section */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6">
             <div className="space-y-4 w-full">
@@ -19,13 +19,12 @@ export default function Home() {
               <div className="min-h-[4rem] md:min-h-[4.5rem] flex items-center justify-center md:justify-start">
                 <HeroTextRotate />
               </div>
-              <p className="text-xl text-gray-800 text-center md:text-left">
+              <p className="text-xl text-gray-800 text-center md:text-left max-w-full break-words">
                 Nálunk megtalálja, amit keres!
               </p>
               <p className="text-lg text-gray-600 text-center md:text-left">
-                4400, Nyíregyháza Lujza utca 20.
-                <br />
-                +36702148899
+                <span className="block">4400, Nyíregyháza Lujza utca 20.</span>
+                <span className="block">+36702148899</span>
               </p>
             </div>
 
@@ -51,7 +50,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2">
           <span className="text-gray-600 font-medium">Autóink</span>
           <div className="animate-bounce">
             <svg
