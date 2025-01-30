@@ -2,34 +2,34 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CarsGrid } from "@/components/layout/cars-grid";
 import { cars, CATEGORY_NAMES } from "@/data/cars";
+import { HeroTextRotate } from "@/components/sections/hero-text-rotate";
 
 export default function Home() {
   return (
     <>
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-6rem)] relative flex items-center">
-        <div className="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4 -mt-28">
+        <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 px-4 -mt-28">
           {/* Left Content Section */}
-          <div className="w-full md:w-1/2 flex flex-col gap-6 text-center md:text-left">
-            <div className="space-y-4">
-              <p className="text-gray-600 uppercase tracking-wide">
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6">
+            <div className="space-y-4 w-full">
+              <p className="text-gray-600 uppercase tracking-wide text-center md:text-left">
                 Megbízható autókölcsönzés!
               </p>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Autót szeretne <br />
-                bérelni?
-              </h1>
-              <p className="text-xl text-gray-800">
+              <div className="min-h-[4rem] md:min-h-[4.5rem] flex items-center justify-center md:justify-start">
+                <HeroTextRotate />
+              </div>
+              <p className="text-xl text-gray-800 text-center md:text-left">
                 Nálunk megtalálja, amit keres!
               </p>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 text-center md:text-left">
                 4400, Nyíregyháza Lujza utca 20.
                 <br />
                 +36702148899
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-4 mt-4 justify-center md:justify-start">
+            <div className="flex flex-wrap gap-4 mt-4 justify-center md:justify-start w-full">
               <Button asChild className="bg-green-500 hover:bg-green-600">
                 <a href="#autoink">Autóink</a>
               </Button>
@@ -38,8 +38,8 @@ export default function Home() {
           </div>
 
           <div className="w-full md:w-1/2 relative h-[250px] sm:h-[350px] md:h-[450px]">
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-green-500 rounded-[2rem]" />
-            <div className="absolute inset-[5%] md:inset-[-15%]">
+            <div className="absolute inset-[15%] md:inset-0 bg-gradient-to-br from-green-400 to-green-500 rounded-[2rem]" />
+            <div className="absolute inset-[-10%] md:inset-[-15%]">
               <Image
                 src="/images/car.png"
                 alt="Luxury car"
