@@ -3,6 +3,8 @@ import Image from "next/image";
 import { CarsGrid } from "@/components/layout/cars-grid";
 import { cars, CATEGORY_NAMES } from "@/data/cars";
 import { HeroTextRotate } from "@/components/sections/hero-text-rotate";
+import { RiShieldCheckLine, RiSofaLine } from "@remixicon/react";
+import { StatusBadge } from "@/components/status-badge";
 
 export default function Home() {
   return (
@@ -12,10 +14,23 @@ export default function Home() {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 px-4 py-8 md:py-0 md:-mt-28">
           {/* Left Content Section */}
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6">
-            <div className="space-y-4 w-full">
-              <p className="text-gray-600 uppercase tracking-wide text-center md:text-left">
-                Megbízható autókölcsönzés!
-              </p>
+            <div className="space-y-4 w-full flex flex-col items-center md:items-start">
+              <StatusBadge
+                leftIcon={
+                  RiShieldCheckLine as React.ComponentType<
+                    React.SVGProps<SVGSVGElement>
+                  >
+                }
+                rightIcon={
+                  RiSofaLine as React.ComponentType<
+                    React.SVGProps<SVGSVGElement>
+                  >
+                }
+                leftLabel="Megbízható"
+                rightLabel="Kényelmes"
+                status="success"
+                className="px-4 py-2.5 text-lg [&_svg]:size-5 mb-8"
+              />
               <div className="min-h-[4rem] md:min-h-[4.5rem] flex items-center justify-center md:justify-start">
                 <HeroTextRotate />
               </div>
@@ -32,7 +47,7 @@ export default function Home() {
               <Button asChild className="bg-green-500 hover:bg-green-600">
                 <a href="#autoink">Autóink</a>
               </Button>
-              <Button variant="outline">Tudnivalók</Button>
+              <Button variant="outline">Kapcsolat</Button>
             </div>
           </div>
 
@@ -41,7 +56,7 @@ export default function Home() {
             <div className="absolute inset-[-10%] md:inset-[-15%]">
               <Image
                 src="/images/car.png"
-                alt="Luxury car"
+                alt="fooldal-auto"
                 fill
                 priority
                 className="object-contain p-4"
