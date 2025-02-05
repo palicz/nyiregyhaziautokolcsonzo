@@ -1,6 +1,6 @@
 import { Car } from "@/types/car";
 import { CarCard } from "./car-card";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
 interface CarsGridProps {
   cars: Car[];
@@ -8,7 +8,7 @@ interface CarsGridProps {
   showUnavailable?: boolean;
 }
 
-export function CarsGrid({
+export const CarsGrid = memo(function CarsGrid({
   cars,
   category,
   showUnavailable = true,
@@ -50,4 +50,4 @@ export function CarsGrid({
       ))}
     </div>
   );
-}
+});

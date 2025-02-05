@@ -4,13 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Users, DoorOpen, Fuel, Cog } from "lucide-react";
 import { Car } from "@/types/car";
-import { useMemo } from "react";
+import { memo, useMemo } from "react";
 
 interface CarCardProps extends Omit<Car, "id" | "category"> {
   className?: string;
 }
 
-export function CarCard({
+export const CarCard = memo(function CarCard({
   name,
   imageUrl,
   price,
@@ -41,6 +41,8 @@ export function CarCard({
     [features]
   );
 
+  const formattedPrice = useMemo(() => price.toLocaleString(), [price]);
+
   return (
     <Card
       className={cn(
@@ -60,8 +62,11 @@ export function CarCard({
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
-            priority={false}
-            loading="lazy"
+            priority={true}
+            loading="eager"
+            quality={75}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQrJyEwPENrLzA9YH9mUmByXGCAg2hcYW1kj4+Xnp2qr6iho6OwrbK0sLP/2wBDARUXFx4aHR4eHbKVOZWysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
           {!available && (
             <div className="absolute inset-0 bg-background/80 flex items-center justify-center">
@@ -76,9 +81,7 @@ export function CarCard({
               <div className="text-xs font-medium uppercase tracking-wide opacity-90">
                 napi díj
               </div>
-              <div className="text-xl font-bold">
-                {price.toLocaleString()} Ft
-              </div>
+              <div className="text-xl font-bold">{formattedPrice} Ft</div>
             </div>
           </div>
         </div>
@@ -108,4 +111,4 @@ export function CarCard({
       </CardContent>
     </Card>
   );
-}
+});

@@ -3,8 +3,156 @@ import Image from "next/image";
 import { CarsGrid } from "@/components/layout/cars-grid";
 import { cars, CATEGORY_NAMES } from "@/data/cars";
 import { HeroTextRotate } from "@/components/sections/hero-text-rotate";
-import { RiShieldCheckLine, RiSofaLine } from "@remixicon/react";
+import {
+  RiShieldCheckLine,
+  RiSofaLine,
+  RiFileList3Line,
+  RiMoneyDollarCircleLine,
+  RiEarthLine,
+  RiSpeedLine,
+  RiRoadMapLine,
+  RiTimeLine,
+} from "@remixicon/react";
 import { StatusBadge } from "@/components/status-badge";
+import { CONTACT_INFO, RENTAL_LIMITS, SECTION_IDS } from "@/lib/constants";
+
+// FAQ items konstans a memória optimalizálásért
+const FAQ_ITEMS = [
+  {
+    icon: RiFileList3Line,
+    color: "green",
+    title: "Milyen dokumentumokra van szükségem bérlés esetén?",
+    content:
+      "Személyi igazolvány, lakcím kártya, adóigazolvány, vezetői jogosítvány.",
+  },
+  {
+    icon: RiMoneyDollarCircleLine,
+    color: "blue",
+    title: "Mikor és mit kell fizetnem?",
+    content:
+      "A bérleti díjat és a kauciót is a bérléskor, előre szükséges teljesíteni.",
+  },
+  {
+    icon: RiEarthLine,
+    color: "purple",
+    title: "Utazhatok külföldre a bérelt gépjárművel?",
+    content:
+      "A legtöbb országba lehetséges utazni. Ugyanakkor amennyiben a gépjárművel el kívánja hagyni az országot, ezt átvetelkor feltétlenül jelezze ügyfélszolgálatunknak. Bővebb információkért kérjük, vegye fel a kapcsolatot kollégáinkkal.",
+  },
+  {
+    icon: RiSpeedLine,
+    color: "red",
+    title: "Mennyivel(km/h) haladhatok a gépjárművel?",
+    content:
+      "A KRESZ szerint megengedett sebességet betartva. Ha az autó folyamatosan meghaladja az előírt legnagyobb sebességi korlátozást +10km/h-val, akkor az teljes kaució megvonásához vezet. Autóink GPS rendszerrel vannak ellátva, így ellenőrizhető a fenti kitétel.",
+  },
+  {
+    icon: RiRoadMapLine,
+    color: "amber",
+    title: "Mennyi km-használatot tartalmaz a bérlés?",
+    content: `Napi ${RENTAL_LIMITS.dailyKmLimit} km a limit, ezen felül megtett km díjáról kérjük tájékozódjon kollégáinktól. Nemzetközi autóbérlés esetén nincs km megkötés, a bérlés bővebb információiról kérjük vegye fel a kapcsolatot kollégáinkkal.`,
+  },
+  {
+    icon: RiTimeLine,
+    color: "teal",
+    title: "Mennyi időtartamra szól a bérlés?",
+    content:
+      "1 bérlési egység 24 óra. A bérlési időtartam nem betartása esetén, +1 bérlési egységet számolunk fel.",
+  },
+];
+
+// Kontakt kártyák konstans
+const CONTACT_CARDS = [
+  {
+    icon: RiEarthLine,
+    color: "green",
+    title: "Személyesen",
+    content: (
+      <>
+        <p className="font-medium text-lg">
+          {CONTACT_INFO.address.zip}, {CONTACT_INFO.address.city}
+        </p>
+        <p className="text-base">{CONTACT_INFO.address.street}</p>
+        <div className="pt-3">
+          <Button
+            className="w-full bg-green-500 hover:bg-green-600 text-base font-medium shadow-sm hover:shadow-md transition-all"
+            asChild
+          >
+            <a
+              href={CONTACT_INFO.address.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-6"
+            >
+              Útvonaltervezés
+            </a>
+          </Button>
+        </div>
+      </>
+    ),
+  },
+  {
+    icon: RiTimeLine,
+    color: "blue",
+    title: "Nyitvatartás",
+    content: (
+      <>
+        <div className="flex justify-between items-center text-base">
+          <span>Hétfő - Péntek</span>
+          <span className="font-semibold text-lg">
+            {CONTACT_INFO.openingHours.weekdays}
+          </span>
+        </div>
+        <div className="flex justify-between items-center text-base">
+          <span>Szombat - Vasárnap</span>
+          <span className="font-semibold text-lg text-red-500">
+            {CONTACT_INFO.openingHours.weekend}
+          </span>
+        </div>
+      </>
+    ),
+  },
+  {
+    icon: RiMoneyDollarCircleLine,
+    color: "purple",
+    title: "Telefonon",
+    content: (
+      <>
+        <p className="font-medium text-lg">{CONTACT_INFO.phone.display}</p>
+        <div className="pt-3">
+          <Button
+            className="w-full bg-purple-500 hover:bg-purple-600 text-base font-medium shadow-sm hover:shadow-md transition-all"
+            asChild
+          >
+            <a href={`tel:${CONTACT_INFO.phone.href}`} className="py-6">
+              Hívás most
+            </a>
+          </Button>
+        </div>
+      </>
+    ),
+  },
+  {
+    icon: RiFileList3Line,
+    color: "amber",
+    title: "E-Mailben",
+    content: (
+      <>
+        <p className="font-medium text-lg">{CONTACT_INFO.email}</p>
+        <div className="pt-3">
+          <Button
+            className="w-full bg-amber-500 hover:bg-amber-600 text-base font-medium shadow-sm hover:shadow-md transition-all"
+            asChild
+          >
+            <a href={`mailto:${CONTACT_INFO.email}`} className="py-6">
+              E-mail küldése
+            </a>
+          </Button>
+        </div>
+      </>
+    ),
+  },
+];
 
 export default function Home() {
   return (
@@ -16,16 +164,8 @@ export default function Home() {
           <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-6">
             <div className="space-y-4 w-full flex flex-col items-center md:items-start">
               <StatusBadge
-                leftIcon={
-                  RiShieldCheckLine as React.ComponentType<
-                    React.SVGProps<SVGSVGElement>
-                  >
-                }
-                rightIcon={
-                  RiSofaLine as React.ComponentType<
-                    React.SVGProps<SVGSVGElement>
-                  >
-                }
+                leftIcon={RiShieldCheckLine}
+                rightIcon={RiSofaLine}
                 leftLabel="Megbízható"
                 rightLabel="Kényelmes"
                 status="success"
@@ -38,16 +178,20 @@ export default function Home() {
                 Nálunk megtalálja, amit keres!
               </p>
               <p className="text-lg text-gray-600 text-center md:text-left">
-                <span className="block">4400, Nyíregyháza Lujza utca 20.</span>
-                <span className="block">+06 70 214 8844</span>
+                <span className="block">
+                  {CONTACT_INFO.address.fullAddress}
+                </span>
+                <span className="block">{CONTACT_INFO.phone.display}</span>
               </p>
             </div>
 
             <div className="flex flex-wrap gap-4 mt-4 justify-center md:justify-start w-full">
               <Button asChild className="bg-green-500 hover:bg-green-600">
-                <a href="#autoink">Autóink</a>
+                <a href={`#${SECTION_IDS.cars}`}>Autóink</a>
               </Button>
-              <Button variant="outline">Kapcsolat</Button>
+              <Button asChild variant="outline">
+                <a href={`#${SECTION_IDS.info}`}>Információk</a>
+              </Button>
             </div>
           </div>
 
@@ -55,12 +199,16 @@ export default function Home() {
             <div className="absolute inset-[15%] md:inset-0 bg-gradient-to-br from-green-400 to-green-500 rounded-[2rem]" />
             <div className="absolute inset-[-10%] md:inset-[-15%]">
               <Image
-                src="/images/car.png"
+                src="/images/car.webp"
                 alt="fooldal-auto"
                 fill
                 priority
                 className="object-contain p-4"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                quality={75}
+                loading="eager"
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQrJyEwPENrLzA9YH9mUmByXGCAg2hcYW1kj4+Xnp2qr6iho6OwrbK0sLP/2wBDARUXFx4aHR4eHbKVOZWysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
               />
             </div>
           </div>
@@ -86,13 +234,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="autoink" className="min-h-screen bg-gray-50 py-24">
+      <section id={SECTION_IDS.cars} className="min-h-screen bg-gray-50 py-24">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-6">Autóink</h2>
           <p className="text-gray-600 text-center text-lg mb-16">
             Fedezze fel prémium autóflottánkat, amely minden igényt kielégít
           </p>
-
           {/* Economy Cars */}
           <div className="mb-16">
             <h3 className="text-2xl font-semibold mb-3">
@@ -103,7 +250,6 @@ export default function Home() {
             </p>
             <CarsGrid cars={cars} category="economy" showUnavailable={true} />
           </div>
-
           {/* Premium Cars */}
           <div>
             <h3 className="text-2xl font-semibold mb-3">
@@ -113,6 +259,91 @@ export default function Home() {
               Luxus és kényelem a legmagasabb színvonalon
             </p>
             <CarsGrid cars={cars} category="premium" showUnavailable={true} />
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="bg-white py-20" id={SECTION_IDS.info}>
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-6">Információk</h2>
+          <p className="text-gray-600 text-center text-lg mb-16">
+            Gyakran ismételt kérdések és válaszok
+          </p>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {FAQ_ITEMS.map((item, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-lg shadow-sm border-l-4 border border-${item.color}-500 p-6 hover:shadow-md transition-shadow`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`text-${item.color}-500 shrink-0 mt-1`}>
+                    <item.icon className="size-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {item.content}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section
+        id={SECTION_IDS.contact}
+        className="bg-gradient-to-b from-gray-50 to-white py-20"
+      >
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl font-bold mb-6">Kapcsolat</h2>
+            <p className="text-gray-600 text-lg">
+              Vegye fel velünk a kapcsolatot és segítünk Önnek megtalálni a
+              tökéletes autót.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Quick Contact */}
+            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {CONTACT_CARDS.map((card, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`bg-${card.color}-50 p-3 rounded-lg`}>
+                      <card.icon className={`size-6 text-${card.color}-600`} />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-xl">{card.title}</h4>
+                    </div>
+                  </div>
+                  <div className="space-y-3 text-gray-600">{card.content}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Map */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden h-full min-h-[400px] relative">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1337.7591435164054!2d21.741413200000003!3d47.939081200000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47389e31700c2c31%3A0x6b8db2835ae98ce2!2sNy%C3%ADregyh%C3%A1za%2C%20Lujza%20u.%2020%2C%204405!5e0!3m2!1shu!2shu!4v1710272117090!5m2!1shu!2shu"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, position: "absolute", top: 0, left: 0 }}
+                  allowFullScreen={false}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
           </div>
         </div>
       </section>

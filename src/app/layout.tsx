@@ -9,6 +9,9 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
+  fallback: ["system-ui", "arial"],
+  adjustFontFallback: true,
 });
 
 export const viewport: Viewport = {
@@ -30,6 +33,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="hu" className="h-full">
+      <head>
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+          crossOrigin="anonymous"
+        />
+        <link rel="preload" href="/images/logo.png" as="image" />
+        <link rel="preload" href="/images/car.png" as="image" />
+      </head>
       <body
         className={`${poppins.className} antialiased min-h-full flex flex-col`}
       >

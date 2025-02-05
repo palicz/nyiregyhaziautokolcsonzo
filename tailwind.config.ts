@@ -1,11 +1,39 @@
 import type { Config } from "tailwindcss";
 
-export default {
+const config = {
     darkMode: ["class"],
     content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{ts,tsx}",
+  ],
+  safelist: [
+    // FAQ kártyák színei
+    'border-green-500',
+    'border-blue-500',
+    'border-purple-500',
+    'border-red-500',
+    'border-amber-500',
+    'border-teal-500',
+    'text-green-500',
+    'text-blue-500',
+    'text-purple-500',
+    'text-red-500',
+    'text-amber-500',
+    'text-teal-500',
+    'bg-green-50',
+    'bg-blue-50',
+    'bg-purple-50',
+    'bg-red-50',
+    'bg-amber-50',
+    'bg-teal-50',
+    'text-green-600',
+    'text-blue-600',
+    'text-purple-600',
+    'text-red-600',
+    'text-amber-600',
+    'text-teal-600',
   ],
   theme: {
   	extend: {
@@ -61,8 +89,24 @@ export default {
   		},
   		fontSize: {
   			'tremor-label': ['0.75rem', '1rem'],
-  		}
+  		},
+  		keyframes: {
+  			"accordion-down": {
+  				from: { height: "0" },
+  				to: { height: "var(--radix-accordion-content-height)" },
+  			},
+  			"accordion-up": {
+  				from: { height: "var(--radix-accordion-content-height)" },
+  				to: { height: "0" },
+  			},
+  		},
+  		animation: {
+  			"accordion-down": "accordion-down 0.2s ease-out",
+  			"accordion-up": "accordion-up 0.2s ease-out",
+  		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
+
+export default config;

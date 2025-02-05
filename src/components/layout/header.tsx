@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
@@ -25,15 +26,28 @@ export const Header = () => {
   return (
     <header className="w-full border-b">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <Link href="/" className="font-semibold text-xl">
-          <span className="text-green-400">Nyíregyházi</span> Autókölcsönző
+        <Link
+          href="/"
+          className="font-semibold text-xl flex items-center gap-2"
+        >
+          <Image
+            src="/images/logo.png"
+            alt="Nyíregyházi Autókölcsönző Logo"
+            width={100}
+            height={100}
+            quality={100}
+            className="object-contain h-16 w-auto"
+          />
+          <span>
+            <span className="text-green-400">Nyíregyházi</span> Autókölcsönző
+          </span>
         </Link>
 
         {/* Desktop Navigation*/}
         <nav className="hidden md:flex items-center gap-8">
           {[
             { name: "Autóink", href: "/#autoink" },
-            { name: "Információk", href: "/" },
+            { name: "Információk", href: "/#informaciok" },
             { name: "Kapcsolat", href: "/" },
           ].map((item) => (
             <Link
@@ -69,7 +83,7 @@ export const Header = () => {
           <div className="flex flex-col items-center justify-center h-full gap-8">
             {[
               { name: "Autóink", href: "/#autoink" },
-              { name: "Információk", href: "/" },
+              { name: "Információk", href: "/#informaciok" },
               { name: "Kapcsolat", href: "/" },
             ].map((item) => (
               <Link
