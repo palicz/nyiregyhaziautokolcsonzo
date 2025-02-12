@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
+import { SECTION_IDS } from "@/lib/constants";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +37,7 @@ export const Header = () => {
             width={100}
             height={100}
             quality={100}
-            className="object-contain h-16 w-auto"
+            className="object-contain h-16 w-auto [filter:hue-rotate(15deg)_brightness(1.05)_saturate(0.9)]"
           />
           <span>
             <span className="text-green-400">Nyíregyházi</span> Autókölcsönző
@@ -46,9 +47,9 @@ export const Header = () => {
         {/* Desktop Navigation*/}
         <nav className="hidden md:flex items-center gap-8">
           {[
-            { name: "Autóink", href: "/#autoink" },
-            { name: "Információk", href: "/#informaciok" },
-            { name: "Kapcsolat", href: "/" },
+            { name: "Autóink", href: `/#${SECTION_IDS.cars}` },
+            { name: "Információk", href: `/#${SECTION_IDS.info}` },
+            { name: "Kapcsolat", href: `/#${SECTION_IDS.contact}` },
           ].map((item) => (
             <Link
               key={item.name}
@@ -82,9 +83,9 @@ export const Header = () => {
         >
           <div className="flex flex-col items-center justify-center h-full gap-8">
             {[
-              { name: "Autóink", href: "/#autoink" },
-              { name: "Információk", href: "/#informaciok" },
-              { name: "Kapcsolat", href: "/" },
+              { name: "Autóink", href: `/#${SECTION_IDS.cars}` },
+              { name: "Információk", href: `/#${SECTION_IDS.info}` },
+              { name: "Kapcsolat", href: `/#${SECTION_IDS.contact}` },
             ].map((item) => (
               <Link
                 key={item.name}

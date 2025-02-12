@@ -12,6 +12,7 @@ import {
   RiSpeedLine,
   RiRoadMapLine,
   RiTimeLine,
+  RiPhoneLine,
 } from "@remixicon/react";
 import { StatusBadge } from "@/components/status-badge";
 import { CONTACT_INFO, RENTAL_LIMITS, SECTION_IDS } from "@/lib/constants";
@@ -66,7 +67,7 @@ const CONTACT_CARDS = [
   {
     icon: RiEarthLine,
     color: "green",
-    title: "Személyesen",
+    title: "Pontos cím",
     content: (
       <>
         <p className="font-medium text-lg">
@@ -113,9 +114,9 @@ const CONTACT_CARDS = [
     ),
   },
   {
-    icon: RiMoneyDollarCircleLine,
+    icon: RiPhoneLine,
     color: "purple",
-    title: "Telefonon",
+    title: "Telefonszám",
     content: (
       <>
         <p className="font-medium text-lg">{CONTACT_INFO.phone.display}</p>
@@ -135,7 +136,7 @@ const CONTACT_CARDS = [
   {
     icon: RiFileList3Line,
     color: "amber",
-    title: "E-Mailben",
+    title: "E-Mail cím",
     content: (
       <>
         <p className="font-medium text-lg">{CONTACT_INFO.email}</p>
@@ -262,49 +263,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="bg-white py-20" id={SECTION_IDS.info}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-6">Információk</h2>
-          <p className="text-gray-600 text-center text-lg mb-16">
-            Gyakran ismételt kérdések és válaszok
-          </p>
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {FAQ_ITEMS.map((item, index) => (
-              <div
-                key={index}
-                className={`bg-white rounded-lg shadow-sm border-l-4 border border-${item.color}-500 p-6 hover:shadow-md transition-shadow`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className={`text-${item.color}-500 shrink-0 mt-1`}>
-                    <item.icon className="size-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-700 leading-relaxed">
-                      {item.content}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
-      <section
-        id={SECTION_IDS.contact}
-        className="bg-gradient-to-b from-gray-50 to-white py-20"
-      >
+      <section id={SECTION_IDS.contact} className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl font-bold mb-6">Kapcsolat</h2>
             <p className="text-gray-600 text-lg">
-              Vegye fel velünk a kapcsolatot és segítünk Önnek megtalálni a
-              tökéletes autót.
+              Vegye fel velünk a kapcsolatot és segítünk Önnek megtalálni a tökéletes autót.
             </p>
           </div>
 
@@ -346,6 +311,127 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <section className="bg-gray-50 py-20" id={SECTION_IDS.info}>
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-6">Információk</h2>
+          <p className="text-gray-600 text-center text-lg mb-16">
+            Gyakran ismételt kérdések és válaszok
+          </p>
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {FAQ_ITEMS.map((item, index) => (
+              <div
+                key={index}
+                className={`bg-white rounded-lg shadow-sm border-l-4 border border-${item.color}-500 p-6 hover:shadow-md transition-shadow`}
+              >
+                <div className="flex items-start gap-4">
+                  <div className={`text-${item.color}-500 shrink-0 mt-1`}>
+                    <item.icon className="size-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      {item.content}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="bg-white relative">
+        <div className="absolute inset-0 bg-white"></div>
+        <div className="container relative mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="space-y-4">
+              <h3 className="text-gray-900 text-lg font-semibold mb-4">Nyíregyházi Autókölcsönző</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Minőségi autóbérlési szolgáltatások Nyíregyházán és környékén. Megbízható járművek, rugalmas feltételek.
+              </p>
+              <div className="pt-4">
+                <p className="text-green-600 font-medium">{CONTACT_INFO.phone.display}</p>
+                <p className="text-gray-600 text-sm">{CONTACT_INFO.email}</p>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h3 className="text-gray-900 text-lg font-semibold mb-4">Gyors Linkek</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href={`#${SECTION_IDS.cars}`} className="text-gray-600 hover:text-green-600 transition-colors">
+                    Autóink
+                  </a>
+                </li>
+                <li>
+                  <a href={`#${SECTION_IDS.info}`} className="text-gray-600 hover:text-green-600 transition-colors">
+                    Információk
+                  </a>
+                </li>
+                <li>
+                  <a href={`#${SECTION_IDS.contact}`} className="text-gray-600 hover:text-green-600 transition-colors">
+                    Kapcsolat
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Categories */}
+            <div>
+              <h3 className="text-gray-900 text-lg font-semibold mb-4">Kategóriák</h3>
+              <ul className="space-y-2">
+                <li>
+                  <a href={`#${SECTION_IDS.cars}`} className="text-gray-600 hover:text-green-600 transition-colors">
+                    {CATEGORY_NAMES.economy}
+                  </a>
+                </li>
+                <li>
+                  <a href={`#${SECTION_IDS.cars}`} className="text-gray-600 hover:text-green-600 transition-colors">
+                    {CATEGORY_NAMES.premium}
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Opening Hours */}
+            <div>
+              <h3 className="text-gray-900 text-lg font-semibold mb-4">Nyitvatartás</h3>
+              <ul className="space-y-2">
+                <li className="flex justify-between items-center">
+                  <span className="text-gray-600">H-P:</span>
+                  <span className="text-gray-900">{CONTACT_INFO.openingHours.weekdays}</span>
+                </li>
+                <li className="flex justify-between items-center">
+                  <span className="text-gray-600">Szo-V:</span>
+                  <span className="text-red-500">{CONTACT_INFO.openingHours.weekend}</span>
+                </li>
+              </ul>
+              <div className="mt-4 pt-4 border-t border-gray-200">
+                <p className="text-sm">
+                  <span className="text-gray-600">Cím:</span><br />
+                  <span className="text-gray-900">{CONTACT_INFO.address.fullAddress}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <div className="flex justify-center items-center">
+              <p className="text-sm text-gray-600">
+                © {new Date().getFullYear()} Nyíregyházi Autókölcsönző. Minden jog fenntartva.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }
