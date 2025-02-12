@@ -2,11 +2,19 @@ import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { Users, DoorOpen, Fuel, Cog } from "lucide-react";
+import { Users, DoorOpen, Fuel, Cog, Snowflake, Car as CarIcon } from "lucide-react";
 import { Car } from "@/types/car";
 import { memo, useMemo } from "react";
 
-interface CarCardProps extends Omit<Car, "id" | "category"> {
+const formatCategory = (category: string) => {
+  const categoryMap = {
+    kiskategoria: "Kiskategória",
+    kozepkategoria: "Középkategória",
+  };
+  return categoryMap[category as keyof typeof categoryMap] || category;
+};
+
+interface CarCardProps extends Omit<Car, "id"> {
   className?: string;
 }
 
@@ -15,8 +23,8 @@ export const CarCard = memo(function CarCard({
   imageUrl,
   price,
   features,
-  description,
   available,
+  category,
   className,
 }: CarCardProps) {
   const carFeatures = useMemo(
@@ -37,8 +45,17 @@ export const CarCard = memo(function CarCard({
         icon: <DoorOpen className="h-4 w-4" />,
         label: `${features.doors} ajtós`,
       },
+      {
+        icon: <Snowflake className="h-4 w-4" />,
+        label: features.hasAC ? "Klímás" : "Nem klímás",
+        className: features.hasAC ? "" : "opacity-50",
+      },
+      {
+        icon: <CarIcon className="h-4 w-4" />,
+        label: formatCategory(category),
+      },
     ],
-    [features]
+    [features, category]
   );
 
   const formattedPrice = useMemo(() => price.toLocaleString(), [price]);
@@ -91,17 +108,15 @@ export const CarCard = memo(function CarCard({
           <h3 className="font-semibold text-lg mb-2 group-hover:text-green-600 transition-colors">
             {name}
           </h3>
-          {description && (
-            <p className="text-sm text-muted-foreground/90 line-clamp-2">
-              {description}
-            </p>
-          )}
         </div>
         <div className="grid grid-cols-2 gap-4">
           {carFeatures.map((feature, index) => (
             <div
               key={index}
-              className="flex items-center gap-2.5 text-sm text-muted-foreground/90 hover:text-green-600 transition-colors p-1.5 rounded-lg hover:bg-green-50"
+              className={cn(
+                "flex items-center gap-2.5 text-sm text-muted-foreground/90 hover:text-green-600 transition-colors p-1.5 rounded-lg hover:bg-green-50",
+                feature.className
+              )}
             >
               <div className="text-green-600/80">{feature.icon}</div>
               <span>{feature.label}</span>

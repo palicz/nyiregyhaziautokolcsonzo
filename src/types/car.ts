@@ -3,9 +3,10 @@ export interface CarFeatures {
   transmission: string;
   fuelType: string;
   doors: number;
+  hasAC?: boolean;
 }
 
-export type CarCategory = "economy" | "premium";
+export type CarCategory = "kiskategoria" | "kozepkategoria";
 
 export interface Car {
   id: string | number;
@@ -13,7 +14,6 @@ export interface Car {
   imageUrl: string;
   price: number;
   features: CarFeatures;
-  description?: string;
   category: CarCategory;
   available?: boolean;
 } 

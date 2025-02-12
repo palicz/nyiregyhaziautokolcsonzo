@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CarsGrid } from "@/components/layout/cars-grid";
 import { cars, CATEGORY_NAMES } from "@/data/cars";
 import { HeroTextRotate } from "@/components/sections/hero-text-rotate";
+import { CategoryCaution } from "@/components/layout/category-caution";
 import {
   RiShieldCheckLine,
   RiSofaLine,
@@ -242,23 +243,23 @@ export default function Home() {
           </p>
           {/* Economy Cars */}
           <div className="mb-16">
-            <h3 className="text-2xl font-semibold mb-3">
-              {CATEGORY_NAMES.economy}
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Megbízható, üzemanyag-takarékos autók kedvező áron
-            </p>
-            <CarsGrid cars={cars} category="economy" showUnavailable={true} />
+            <div className="flex flex-col gap-4 mb-7">
+              <h3 className="text-2xl font-semibold">
+                {CATEGORY_NAMES.kiskategoria}
+              </h3>
+              <CategoryCaution category="kiskategoria" />
+            </div>
+            <CarsGrid cars={cars} category="kiskategoria" showUnavailable={true} />
           </div>
           {/* Premium Cars */}
-          <div>
-            <h3 className="text-2xl font-semibold mb-3">
-              {CATEGORY_NAMES.premium}
-            </h3>
-            <p className="text-gray-600 mb-8">
-              Luxus és kényelem a legmagasabb színvonalon
-            </p>
-            <CarsGrid cars={cars} category="premium" showUnavailable={true} />
+          <div className="mb-16">
+            <div className="flex flex-col gap-4 mb-7">
+              <h3 className="text-2xl font-semibold">
+                {CATEGORY_NAMES.kozepkategoria}
+              </h3>
+              <CategoryCaution category="kozepkategoria" />
+            </div>
+            <CarsGrid cars={cars} category="kozepkategoria" showUnavailable={true} />
           </div>
         </div>
       </section>
@@ -389,12 +390,12 @@ export default function Home() {
               <ul className="space-y-2">
                 <li>
                   <a href={`#${SECTION_IDS.cars}`} className="text-gray-600 hover:text-green-600 transition-colors">
-                    {CATEGORY_NAMES.economy}
+                    {CATEGORY_NAMES.kiskategoria}
                   </a>
                 </li>
                 <li>
                   <a href={`#${SECTION_IDS.cars}`} className="text-gray-600 hover:text-green-600 transition-colors">
-                    {CATEGORY_NAMES.premium}
+                    {CATEGORY_NAMES.kozepkategoria}
                   </a>
                 </li>
               </ul>

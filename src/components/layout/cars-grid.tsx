@@ -44,7 +44,7 @@ export const CarsGrid = memo(function CarsGrid({
           imageUrl={car.imageUrl}
           price={car.price}
           features={car.features}
-          description={car.description}
+          category={car.category}
           available={car.available}
         />
       ))}

@@ -30,6 +30,11 @@ export const RENTAL_LIMITS = {
   dailyKmLimit: 500,
 };
 
+export const CAUTION_MONEY = {
+  kiskategoria: 50000,
+  kozepkategoria: 100000,
+} as const;
+
 export const SECTION_IDS = {
   cars: "autoink",
   info: "informaciok",

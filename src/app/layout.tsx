@@ -40,7 +40,6 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preload" href="/images/logo.png" as="image" />
-        <link rel="preload" href="/images/car.png" as="image" />
       </head>
       <body
         className={`${poppins.className} antialiased min-h-full flex flex-col`}
