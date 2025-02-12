@@ -12,7 +12,7 @@ export const cars: Car[] = [
       fuelType: "Dízel",
       doors: 5,
     },
-    category: "kiskategoria",
+    category: "kozepkategoria",
     available: true,
   },
   {

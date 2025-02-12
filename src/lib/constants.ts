@@ -2,15 +2,15 @@ export const CONTACT_INFO = {
   address: {
     street: "Lujza utca 20",
     city: "Nyíregyháza",
-    zip: "4400",
-    fullAddress: "4400, Nyíregyháza Lujza utca 20.",
+    zip: "4405",
+    fullAddress: "4405, Nyíregyháza Lujza utca 20.",
     mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=4405+Nyíregyháza+Lujza+utca+20",
   },
   phone: {
-    display: "+06 70 214 8844",
+    display: "+36 70 214 8844",
     href: "+36702148844",
   },
-  email: "mpautomobilekft@gmail.com",
+  email: "nyiregyhaziautokolcsonzo@gmail.com",
   openingHours: {
     weekdays: "8:00 - 17:00",
     weekend: "Zárva",
