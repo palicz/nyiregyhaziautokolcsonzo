@@ -25,7 +25,7 @@ const FAQ_ITEMS = [
     color: "green",
     title: "Milyen dokumentumokra van szükségem bérlés esetén?",
     content:
-      "Személyi igazolvány, lakcím kártya, adóigazolvány, vezetői jogosítvány.",
+      "Személyi igazolvány, lakcím kártya, adóigazolvány, vezetői engedély.",
   },
   {
     icon: RiMoneyDollarCircleLine,
