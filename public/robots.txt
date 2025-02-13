@@ -1,0 +1,14 @@
+# This is the robots.txt file - It tells search engines how to crawl your site
+
+# User-agent: * means these rules apply to all search engines/web crawlers
+User-agent: *
+
+# Allow: / means allow crawling of all pages on the site
+Allow: /
+
+# Location of your XML sitemap - helps search engines find all your pages
+Sitemap: https://nyiregyhaziautokolcsonzo.hu/sitemap.xml
+
+# Crawl-delay: 1 means wait 1 second between page requests
+# This helps prevent overwhelming your server
+Crawl-delay: 1 

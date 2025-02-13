@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This is your XML Sitemap - It helps search engines understand the structure of your website -->
+<!-- xmlns defines the XML namespace for the sitemap protocol -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Each URL entry represents a page on your website -->
+  <url>
+    <!-- loc: The full URL of the page -->
+    <loc>https://nyiregyhaziautokolcsonzo.hu</loc>
+    
+    <!-- lastmod: When the page was last modified (YYYY-MM-DD format) -->
+    <lastmod>2025-02-13</lastmod>
+    
+    <!-- changefreq: How often the page content changes -->
+    <!-- Possible values: always, hourly, daily, weekly, monthly, yearly, never -->
+    <changefreq>daily</changefreq>
+    
+    <!-- priority: Importance of this page relative to other pages (0.0 to 1.0) -->
+    <!-- 1.0 is highest priority, typically used for homepage -->
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Add more URLs as you add more pages to your site -->
+  <!-- Example for a car category page:
+  <url>
+    <loc>https://nyiregyhaziautokolcsonzo.hu/categories/economy</loc>
+    <lastmod>2025-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+</urlset> 
