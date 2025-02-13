@@ -88,7 +88,7 @@ export const metadata: Metadata = {
    * - Include primary keywords naturally
    * - Have a clear call-to-action
    */
-  description: 'Megbízható autókölcsönzés Nyíregyházán kedvező áron. ⭐ Széles autóválaszték ⭐ Rugalmas feltételek ⭐ Azonnali bérlés ⭐ 24/7 ügyfélszolgálat. Béreljen autót most!',
+  description: 'Megbízható autókölcsönzés Nyíregyházán kedvező áron. ⭐ Széles autóválaszték ⭐ Rugalmas feltételek ⭐ Azonnali bérlés ⭐ Gyors ügyintézés. Béreljen autót most!',
 
   /**
    * Keywords
