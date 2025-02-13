@@ -206,10 +206,9 @@ export default function Home() {
                 fill
                 priority
                 className="object-contain p-4 bg-transparent"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={75}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                quality={85}
                 loading="eager"
-                placeholder="empty"
               />
             </div>
           </div>
