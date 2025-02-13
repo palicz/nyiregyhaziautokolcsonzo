@@ -282,13 +282,11 @@ export default function Home() {
                   key={index}
                   className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100"
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`bg-${card.color}-50 p-3 rounded-lg`}>
-                      <card.icon className={`size-6 text-${card.color}-600`} />
+                  <div className="flex items-center gap-3">
+                    <div className={`p-3 rounded-lg bg-${card.color}-100`}>
+                      <card.icon className={`size-6 text-${card.color}-500`} />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-xl">{card.title}</h4>
-                    </div>
+                    <h3 className="font-semibold text-xl">{card.title}</h3>
                   </div>
                   <div className="space-y-3 text-gray-600">{card.content}</div>
                 </div>
@@ -306,6 +304,7 @@ export default function Home() {
                   allowFullScreen={false}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
+                  title="Nyíregyházi Autókölcsönző térképes elhelyezkedése"
                 ></iframe>
               </div>
             </div>

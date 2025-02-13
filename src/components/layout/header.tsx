@@ -66,6 +66,8 @@ export const Header = () => {
         <button
           className="md:hidden z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? (
             <X className="h-6 w-6 text-green-500" />
