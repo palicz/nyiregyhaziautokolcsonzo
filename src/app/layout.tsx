@@ -17,6 +17,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { TopBar } from "@/components/layout/top-bar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import Script from 'next/script';
 
 /**
  * Poppins Font Configuration
@@ -237,6 +238,52 @@ export default function RootLayout({
         />
         {/* Preload logo for better initial page load performance */}
         <link rel="preload" href="/images/logo.png" as="image" />
+        <Script
+          id="local-business-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Nyíregyházi Autókölcsönző",
+              "@id": "https://nyiregyhaziautokolcsonzo.hu",
+              "url": "https://nyiregyhaziautokolcsonzo.hu",
+              "telephone": "+36702148844",
+              "image": "https://nyiregyhaziautokolcsonzo.hu/images/logo.png",
+              "description": "Megbízható autókölcsönzés Nyíregyházán kedvező áron. Széles autóválaszték, rugalmas feltételek, azonnali bérlés.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Lujza utca 20",
+                "addressLocality": "Nyíregyháza",
+                "postalCode": "4405",
+                "addressCountry": "HU"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "47.9495",
+                "longitude": "21.7244"
+              },
+              "priceRange": "$$",
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday",
+                  "Sunday"
+                ],
+                "opens": "00:00",
+                "closes": "23:59"
+              },
+              "areaServed": "Nyíregyháza",
+              "serviceType": "Car Rental",
+              "sameAs": []
+            })
+          }}
+        />
       </head>
       {/* 
         Body Classes:
