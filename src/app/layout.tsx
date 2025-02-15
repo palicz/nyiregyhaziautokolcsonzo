@@ -18,6 +18,7 @@ import { Header } from "@/components/layout/header";
 import { TopBar } from "@/components/layout/top-bar";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 
 /**
  * Poppins Font Configuration
@@ -302,7 +303,10 @@ export default function RootLayout({
           Main content area
           flex-grow ensures it takes available space and pushes footer down
         */}
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">{children}
+          {/* Vercel Analytics component */}
+        <Analytics />
+        </main>
         {/* Utility component for improving UX on long pages */}
         <ScrollToTop />
       </body>
