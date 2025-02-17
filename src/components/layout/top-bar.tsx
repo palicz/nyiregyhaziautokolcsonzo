@@ -60,7 +60,7 @@ export const TopBar = () => {
             className="hidden sm:flex items-center gap-2"
           >
             <Clock size={16} className="text-white" />
-            <span>Nyitva: H-P {CONTACT_INFO.openingHours.weekdays}</span>
+            <span>H-P: {CONTACT_INFO.openingHours.weekdays}</span>
           </motion.div>
         </div>
       </div>

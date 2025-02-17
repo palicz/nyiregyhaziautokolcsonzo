@@ -12,9 +12,13 @@ export const CONTACT_INFO = {
   },
   email: "nyiregyhaziautokolcsonzo@gmail.com",
   openingHours: {
-    weekdays: "8:00 - 17:00",
-    weekend: "Zárva",
+    weekdays: "8:00 - 16:00",
+    weekend: {
+      saturday: "8:00 - 12:00",
+      sunday: "Zárva"
+    },
   },
+  facebook: "https://www.facebook.com/p/Ny%C3%ADregyh%C3%A1zi-Aut%C3%B3k%C3%B6lcs%C3%B6nz%C5%91-100058870124940/?locale=hu_HU",
 };
 
 export const HERO_ROTATE_TEXTS = [

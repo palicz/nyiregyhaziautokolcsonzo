@@ -14,6 +14,9 @@ import {
   RiRoadMapLine,
   RiTimeLine,
   RiPhoneLine,
+  RiMapPin2Line,
+  RiQuestionLine,
+  RiFacebookBoxFill,
 } from "@remixicon/react";
 import { StatusBadge } from "@/components/status-badge";
 import { CONTACT_INFO, RENTAL_LIMITS, SECTION_IDS } from "@/lib/constants";
@@ -66,15 +69,12 @@ const FAQ_ITEMS = [
 // Kontakt kártyák konstans
 const CONTACT_CARDS = [
   {
-    icon: RiEarthLine,
+    icon: RiMapPin2Line,
     color: "green",
     title: "Pontos cím",
     content: (
       <>
-        <p className="font-medium text-lg">
-          {CONTACT_INFO.address.zip}, {CONTACT_INFO.address.city}
-        </p>
-        <p className="text-base">{CONTACT_INFO.address.street}</p>
+        <p className="font-medium text-lg">{CONTACT_INFO.address.fullAddress}</p>
         <div className="pt-3">
           <Button
             className="w-full bg-green-500 hover:bg-green-600 text-base font-medium shadow-sm hover:shadow-md transition-all"
@@ -106,9 +106,15 @@ const CONTACT_CARDS = [
           </span>
         </div>
         <div className="flex justify-between items-center text-base">
-          <span>Szombat - Vasárnap</span>
+          <span>Szombat</span>
+          <span className="font-semibold text-lg">
+            {CONTACT_INFO.openingHours.weekend.saturday}
+          </span>
+        </div>
+        <div className="flex justify-between items-center text-base">
+          <span>Vasárnap</span>
           <span className="font-semibold text-lg text-red-500">
-            {CONTACT_INFO.openingHours.weekend}
+            {CONTACT_INFO.openingHours.weekend.sunday}
           </span>
         </div>
       </>
@@ -140,7 +146,7 @@ const CONTACT_CARDS = [
     title: "E-Mail cím",
     content: (
       <>
-        <p className="font-medium text-lg">{CONTACT_INFO.email}</p>
+        <p className="font-medium text-lg break-all">{CONTACT_INFO.email}</p>
         <div className="pt-3">
           <Button
             className="w-full bg-amber-500 hover:bg-amber-600 text-base font-medium shadow-sm hover:shadow-md transition-all"
@@ -148,6 +154,31 @@ const CONTACT_CARDS = [
           >
             <a href={`mailto:${CONTACT_INFO.email}`} className="py-6">
               E-mail küldése
+            </a>
+          </Button>
+        </div>
+      </>
+    ),
+  },
+  {
+    icon: RiFacebookBoxFill,
+    color: "blue",
+    title: "Facebook",
+    content: (
+      <>
+        <p className="font-medium text-lg">Kövess minket Facebookon</p>
+        <div className="pt-3">
+          <Button
+            className="w-full bg-blue-500 hover:bg-blue-600 text-base font-medium shadow-sm hover:shadow-md transition-all"
+            asChild
+          >
+            <a
+              href={CONTACT_INFO.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="py-6"
+            >
+              Facebook oldal
             </a>
           </Button>
         </div>
@@ -279,7 +310,9 @@ export default function Home() {
               {CONTACT_CARDS.map((card, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100"
+                  className={`bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100 ${
+                    index === CONTACT_CARDS.length - 1 ? "md:col-span-2" : ""
+                  }`}
                 >
                   <div className="flex items-center gap-3">
                     <div className={`p-3 rounded-lg bg-${card.color}-100`}>
@@ -408,8 +441,12 @@ export default function Home() {
                   <span className="text-gray-900">{CONTACT_INFO.openingHours.weekdays}</span>
                 </li>
                 <li className="flex justify-between items-center">
-                  <span className="text-gray-600">Szo-V:</span>
-                  <span className="text-red-500">{CONTACT_INFO.openingHours.weekend}</span>
+                  <span className="text-gray-600">Szombat:</span>
+                  <span className="text-gray-900">{CONTACT_INFO.openingHours.weekend.saturday}</span>
+                </li>
+                <li className="flex justify-between items-center">
+                  <span className="text-gray-600">Vasárnap:</span>
+                  <span className="text-red-500">{CONTACT_INFO.openingHours.weekend.sunday}</span>
                 </li>
               </ul>
               <div className="mt-4 pt-4 border-t border-gray-200">
