@@ -15,7 +15,6 @@ import {
   RiTimeLine,
   RiPhoneLine,
   RiMapPin2Line,
-  RiQuestionLine,
   RiFacebookBoxFill,
 } from "@remixicon/react";
 import { StatusBadge } from "@/components/status-badge";
