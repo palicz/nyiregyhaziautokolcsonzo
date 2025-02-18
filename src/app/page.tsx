@@ -16,6 +16,7 @@ import {
   RiPhoneLine,
   RiMapPin2Line,
   RiFacebookBoxFill,
+  RiCodeSSlashLine,
 } from "@remixicon/react";
 import { StatusBadge } from "@/components/status-badge";
 import { CONTACT_INFO, RENTAL_LIMITS, SECTION_IDS } from "@/lib/constants";
@@ -458,11 +459,16 @@ export default function Home() {
           </div>
 
           {/* Bottom Bar */}
+          {/* Bottom Bar */}
           <div className="mt-12 pt-8 border-t border-gray-200">
-            <div className="flex justify-center items-center">
-              <p className="text-sm text-gray-600">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+              <p className="text-sm text-gray-600 order-2 md:order-1">
                 © {new Date().getFullYear()} Nyíregyházi Autókölcsönző. Minden jog fenntartva.
               </p>
+              <div className="flex items-center gap-1.5 text-gray-400 hover:text-gray-500 transition-colors order-1 md:order-2">
+                <RiCodeSSlashLine className="size-3.5" />
+                <span className="text-xs">Palicz Dániel</span>
+              </div>
             </div>
           </div>
         </div>
